@@ -1,0 +1,23 @@
+@import "utils/variables";
+@import "utils/mixins";
+
+
+.dataList {
+  // display: flex;
+  // flex-wrap: wrap;
+  display: grid;
+  @include forTablet {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @include forPc {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  
+  .listItem {
+    margin: 10px;
+    // width: 150px;
+    .character__image {
+      width: 100%;
+    }
+  }
+}
