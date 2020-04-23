@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CharacterDetail = (props) => {
-  console.log(props)
   const { image, name, species, origin, episode, status } = props.CharacterData;
   const {iconStatus, iconSpecies} = props;
   return (

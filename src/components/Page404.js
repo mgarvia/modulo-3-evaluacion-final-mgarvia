@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Page404 = (props) => {
+const Page404 = () => {
   return (
-    <div>El personaje que buscas no existe</div>
+    <div>La página que buscas no existe</div>
   )
 }
 
