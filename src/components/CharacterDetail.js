@@ -1,26 +1,38 @@
 import React from 'react';
+import '../stylesheets/CharacterDetail.scss';
 
 const CharacterDetail = (props) => {
   const { image, name, species, origin, episode, status } = props.CharacterData;
-  const {iconStatus, iconSpecies} = props;
+  const { iconStatus, iconSpecies } = props;
   return (
-    <div className="characterDetail__container">
-      <a href="/" title="volver a la página de inicio" >
-        <i className="fas fa-angle-left"></i> Volver
-      </a>
-      <div className="characterDetail__info">
-        <img className="character__image" src={image} alt={name} />
-        <p className="character__name">Name: {name}</p>
-        <p className="character__status">Status: 
-          <i className={`character__status--icon ${iconStatus}`}></i> 
-          {status}
-        </p>
-        <p className="character__species">Species: 
-        <i className={`character__status--icon ${iconSpecies}`}></i>
-           {species}
+    <div className="CharacterDetail">
+      <div className="CharacterDetail__return">
+        <a href="/" title="volver a la página de inicio" >
+          <i className="fas fa-angle-left"></i> Volver
+        </a>
+      </div>
+
+      <div className="CharacterDetail__box">
+        <img className="CharacterDetail__image" src={image} alt={name} />
+        <div className="CharacterDetail__box--info">
+          <p className="CharacterDetail__subtitle">Name:
+          <span className="CharacterDetail__info CharacterDetail__name">{name}</span>
           </p>
-        <p>Origin: {origin.name}</p>
-        <p>Episodes: {episode.length}</p>
+          <p className="CharacterDetail__subtitle">Status:
+          <span className="CharacterDetail__info"> {status}</span>
+            <i className={`CharacterDetail__icon--status ${iconStatus}`}></i>
+          </p>
+          <p className="CharacterDetail__subtitle">Species:
+          <span className="CharacterDetail__info"> {species}</span>
+            <i className={`CharacterDetail__icon ${iconSpecies}`}></i>
+          </p>
+          <p className="CharacterDetail__subtitle">Origin:
+          <span className="CharacterDetail__info"> {origin.name}</span>
+          </p>
+          <p className="CharacterDetail__subtitle">Episodes:
+          <span className="CharacterDetail__info"> {episode.length}</span>
+          </p>
+        </div>
       </div>
     </div>
   )

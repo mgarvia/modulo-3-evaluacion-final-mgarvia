@@ -1,5 +1,9 @@
-@mixin forTablet {
-  @media all and (min-width: $Tablet) { @content; }
+@mixin forTabletV {
+  @media all and (min-width: $TabletV) { @content; }
+}
+
+@mixin forTabletH {
+  @media all and (min-width: $TabletH) { @content; }
 }
 
 @mixin forPc {

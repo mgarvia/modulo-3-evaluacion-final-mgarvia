@@ -1,0 +1,50 @@
+@import "utils/variables";
+@import "utils/mixins";
+
+.CharacterDetail {
+  height: 80vh;
+  &__return {
+    text-align: right;
+    margin-right: 35px;
+    padding: 5px;
+    &:hover {
+      color: $secondaryColor;
+    }
+  }
+  &__image {
+    height: 40vh;
+  }
+  &__box {
+    display: inline-block;
+    text-align: left;
+    padding: 20px 0px;
+    &--info {
+      padding: 20px 0px;
+      @include forTabletV {
+        margin: 0px 20px;
+        padding: 0px;
+      }
+    }
+    @include forTabletV {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  &__subtitle {
+    font-family: $subtitleFont;
+  }
+  &__info {
+    display: inline-block;
+    margin: 0px 10px;
+    font-family: $bodyFont;
+  }
+  &__name {
+    font-family: $titleFont;
+    color: $secondaryColor;
+  }
+  &__icon {
+    &--status {
+      color: red;
+    } 
+  }
+}

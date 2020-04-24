@@ -1,0 +1,49 @@
+@import "utils/variables";
+@import "utils/mixins";
+
+.form {
+  .input {
+    margin-bottom: 10px;
+    &__search {
+      
+      width: 250px;
+      padding: 5px;
+      border: solid 1px $mainColor;
+      background-color: transparent;
+      color: white;
+      text-align: center;
+      @include forTabletH{
+        width: 350px;
+      }
+      @include forPc{
+        width: 450px;
+      }
+      &:focus {
+        border: solid 2px $secondaryColor;
+        &::placeholder {
+          color: transparent;
+        }
+      }
+      &::placeholder {
+        color: $secondaryColor;
+      }
+    }
+    .removeBtn {
+      padding: 5px;
+      border: solid 1px $mainColor;
+      border-left: transparent;
+      background-color: $mainColor;
+      color: $secondaryColor;
+    }
+    &__checkbox {
+      &:checked {
+        background-color: red;
+      }
+      
+      color: red;
+      &--label {
+        margin-left: 5px;
+      }
+    }
+  }
+}

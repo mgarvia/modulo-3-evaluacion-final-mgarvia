@@ -1,0 +1,22 @@
+@import "utils/variables";
+@import "utils/mixins";
+
+.SearchError {
+  height: 64vh;
+  padding: 20px;
+  font-size: 18px;
+  @include forTabletH {
+    padding: 40px;
+  }
+  &__msg {
+    font-family: $subtitleFont;
+    margin-top: 60px;
+    @include forTabletH {
+      margin-top: 30px;
+    }
+    &--value {
+      font-family: $titleFont;
+      color: $secondaryColor;
+    }
+  }
+}

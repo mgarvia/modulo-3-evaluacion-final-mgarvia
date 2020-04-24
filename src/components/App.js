@@ -18,22 +18,35 @@ class App extends React.Component {
       inputValue: '',
       orderByName: false,
       searchResult: true,
+      loader: false,
     }
     this.updateInputValue = this.updateInputValue.bind(this);
+    this.resetInputValue = this.resetInputValue.bind(this);
     this.updateOrderByName = this.updateOrderByName.bind(this);
     this.renderCharacterDetail = this.renderCharacterDetail.bind(this);
+    this.showLoader = this.showLoader.bind(this);
   }
 
   componentDidMount() {
     const localValue = JSON.parse(localStorage.getItem('inputValue'));
-    
+
     fetchData()
       .then(data => {
         this.setState({
           data: data.results,
-          inputValue: localValue
+          inputValue: localValue,
+          loader: false,
         })
       })
+    this.timer = setTimeout(this.showLoader, 1500)
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
+  showLoader() {
+    this.setState({ loader: true });
   }
 
   componentDidUpdate() {
@@ -43,6 +56,12 @@ class App extends React.Component {
   updateInputValue(value) {
     this.setState({
       inputValue: value
+    })
+  }
+
+  resetInputValue() {
+    this.setState({
+      inputValue: ''
     })
   }
 
@@ -84,38 +103,44 @@ class App extends React.Component {
   }
 
   render() {
-    const { data, inputValue, orderByName } = this.state;
-    const { updateInputValue, updateOrderByName, updateData, renderCharacterDetail } = this;
+    const { data, inputValue, orderByName, loader } = this.state;
+    const { updateInputValue, updateOrderByName, updateData, renderCharacterDetail, resetInputValue } = this;
 
     return (
       <div className="App">
-        <header>
-          <img className="logo" src={logo} alt="logo" />
+        <header className="header">
+          <a href="/">
+            <img className="logo" src={logo} alt="Rick and Morty" />
+          </a>
         </header>
         <main>
           <Switch>
             <Route exact path="/">
-              {!data.length ?
-                <Loader /> : 
-                <div>
-                  <Filters
-                    inputValue={inputValue}
-                    updateInputValue={updateInputValue}
-                    updateData={updateData}
-                    updateOrderByName={updateOrderByName}
-                    orderByName={orderByName}
-                  />
-                  <CharacterList
-                    data={data}
-                    inputValue={inputValue}
-                  />
-                </div>
+              {!data.length || !loader ?
+                <Loader />
+                :
+              <div>
+                <Filters
+                  inputValue={inputValue}
+                  updateInputValue={updateInputValue}
+                  resetInputValue={resetInputValue}
+                  updateData={updateData}
+                  updateOrderByName={updateOrderByName}
+                  orderByName={orderByName}
+                />
+                <CharacterList
+                  data={data}
+                  inputValue={inputValue}
+                />
+              </div>
               }
             </Route>
             <Route path="/character/:id" render={renderCharacterDetail} />
           </Switch>
         </main>
-        <footer></footer>
+        <footer className="footer">
+          <div>React Project April 2020 - Adalab Idelisa</div>
+        </footer>
       </div>
     )
   }
