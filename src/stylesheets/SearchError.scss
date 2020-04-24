@@ -10,13 +10,19 @@
   }
   &__msg {
     font-family: $subtitleFont;
-    margin-top: 60px;
+    // margin-top: 30px;
     @include forTabletH {
       margin-top: 30px;
+    }
+    @include forPc {
+      margin-top: 60px;
     }
     &--value {
       font-family: $titleFont;
       color: $secondaryColor;
     }
+  }
+  .fontAlien {
+    font-family: Alien_S;
   }
 }

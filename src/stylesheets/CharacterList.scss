@@ -2,16 +2,11 @@
 @import "utils/mixins";
 
 .dataList {
-  display: grid;
-  @include forTabletV {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  @include forTabletH {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  @include forPc {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  max-width: 1300px;
+  margin: auto;
   .listItem {
     margin: auto;
     padding: 10px;

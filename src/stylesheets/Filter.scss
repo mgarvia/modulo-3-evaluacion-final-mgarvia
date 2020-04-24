@@ -5,18 +5,22 @@
   .input {
     margin-bottom: 10px;
     &__search {
-      
       width: 250px;
       padding: 5px;
       border: solid 1px $mainColor;
       background-color: transparent;
       color: white;
       text-align: center;
-      @include forTabletH{
+      @include forTabletH {
         width: 350px;
       }
-      @include forPc{
+      @include forPc {
         width: 450px;
+      }
+      &:hover {
+        &::placeholder {
+          color: transparent;
+        }
       }
       &:focus {
         border: solid 2px $secondaryColor;
@@ -34,16 +38,39 @@
       border-left: transparent;
       background-color: $mainColor;
       color: $secondaryColor;
+      &:hover {
+        cursor: pointer;
+      }
     }
     &__checkbox {
-      &:checked {
-        background-color: red;
-      }
-      
-      color: red;
+      display: none;
       &--label {
-        margin-left: 5px;
+        padding-left: 25px;
+        &:hover {
+          color: white;
+        }
+        @include forPc {
+          &:hover {
+            color: $secondaryColor;
+          }
+        }
       }
+    }
+  }
+  .checkbox {
+    @include forTabletH {
+      display: flex;
+      justify-content: center;
+      * {
+        margin: 5px;
+      }
+    }
+    .icon {
+      position: absolute;
+      z-index: -1;
+    }
+    .active {
+      color: $mainColor;
     }
   }
 }

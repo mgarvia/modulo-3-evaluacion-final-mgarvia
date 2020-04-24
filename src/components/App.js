@@ -4,10 +4,9 @@ import Filters from './Filters';
 import CharacterList from './CharacterList';
 import CharacterDetail from './CharacterDetail';
 import Loader from './Loader';
-import { Route, Switch } from 'react-router-dom';
 import Page404 from './Page404';
 import logo from '../images/logo.png'
-
+import { Route, Switch } from 'react-router-dom';
 import '../stylesheets/App.scss';
 
 class App extends React.Component {
@@ -17,14 +16,22 @@ class App extends React.Component {
       data: [],
       inputValue: '',
       orderByName: false,
+      translateToAlien: false,
+      font: '',
+      deadCharacters: false,
       searchResult: true,
-      loader: false,
+      loader: true,
     }
+    this.iconAZ = React.createRef();
+    this.iconAlien = React.createRef();
+    this.iconSkull = React.createRef();
     this.updateInputValue = this.updateInputValue.bind(this);
     this.resetInputValue = this.resetInputValue.bind(this);
     this.updateOrderByName = this.updateOrderByName.bind(this);
+    this.updateTranslateToAlien = this.updateTranslateToAlien.bind(this);
+    this.updateDeadCharacters = this.updateDeadCharacters.bind(this);
     this.renderCharacterDetail = this.renderCharacterDetail.bind(this);
-    this.showLoader = this.showLoader.bind(this);
+    this.updateLoader = this.updateLoader.bind(this);
   }
 
   componentDidMount() {
@@ -35,22 +42,23 @@ class App extends React.Component {
         this.setState({
           data: data.results,
           inputValue: localValue,
-          loader: false,
+          loader: true,
         })
       })
-    this.timer = setTimeout(this.showLoader, 1500)
+    this.font = React.createRef();
+    this.timer = setTimeout(this.updateLoader, 2000)
   }
 
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
 
-  showLoader() {
-    this.setState({ loader: true });
-  }
-
   componentDidUpdate() {
     localStorage.setItem('inputValue', JSON.stringify(this.state.inputValue));
+  }
+  
+  updateLoader() {
+    this.setState({ loader: false });
   }
 
   updateInputValue(value) {
@@ -68,6 +76,7 @@ class App extends React.Component {
   updateOrderByName() {
     if (this.state.orderByName !== true) {
       this.setState({ orderByName: true })
+      this.iconAZ.current.classList.add('active')
       this.state.data.sort((a, b) => {
         if (a.name > b.name) { return 1 }
         if (a.name < b.name) { return -1 }
@@ -75,11 +84,35 @@ class App extends React.Component {
       })
     } else {
       this.setState({ orderByName: false })
+      this.iconAZ.current.classList.remove('active')
       this.state.data.sort(function (a, b) {
         if (a.id > b.id) { return 1; }
         if (a.id < b.id) { return -1 }
         return 0;
       })
+    }
+  }
+
+  updateTranslateToAlien() {
+    if (this.state.translateToAlien !== true) {
+      this.setState({ translateToAlien: true });
+      this.setState({ font: 'fontAlien' });
+      this.iconAlien.current.classList.add('active');
+    } else {
+      this.setState({ translateToAlien: false });
+      this.setState({ font: '' });
+      this.iconAlien.current.classList.remove('active');
+    }
+  }
+
+  updateDeadCharacters() {
+    if (this.state.deadCharacters !== true) {
+      this.setState({ deadCharacters: true });
+      this.iconSkull.current.classList.add('active');
+    } else {
+      this.setState({ deadCharacters: false });
+      this.setState({ font: '' });
+      this.iconSkull.current.classList.remove('active');
     }
   }
 
@@ -103,8 +136,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { data, inputValue, orderByName, loader } = this.state;
-    const { updateInputValue, updateOrderByName, updateData, renderCharacterDetail, resetInputValue } = this;
+    const { data, inputValue, orderByName, loader, translateToAlien, font, deadCharacters } = this.state;
+    const { updateInputValue, updateOrderByName, updateData, renderCharacterDetail, resetInputValue, updateTranslateToAlien, iconAZ, iconAlien, updateDeadCharacters, iconSkull} = this;
 
     return (
       <div className="App">
@@ -116,7 +149,7 @@ class App extends React.Component {
         <main>
           <Switch>
             <Route exact path="/">
-              {!data.length || !loader ?
+              {!data.length || loader ?
                 <Loader />
                 :
               <div>
@@ -124,13 +157,22 @@ class App extends React.Component {
                   inputValue={inputValue}
                   updateInputValue={updateInputValue}
                   resetInputValue={resetInputValue}
+                  translateToAlien={translateToAlien}
+                  updateTranslateToAlien={updateTranslateToAlien}
                   updateData={updateData}
                   updateOrderByName={updateOrderByName}
                   orderByName={orderByName}
+                  iconAZ={iconAZ}
+                  iconAlien={iconAlien}
+                  iconSkull={iconSkull}
+                  deadCharacters={deadCharacters}
+                  updateDeadCharacters={updateDeadCharacters}
                 />
                 <CharacterList
                   data={data}
                   inputValue={inputValue}
+                  fontAlien={font}
+                  deadCharacters={deadCharacters}
                 />
               </div>
               }

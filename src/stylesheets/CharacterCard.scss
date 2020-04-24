@@ -6,9 +6,15 @@
   height: 310px;
   &__image {
     width: 100%;
+    &:hover {
+      transform: scale(1.03);
+    }
   }
   &__name {
     font-family: $titleFont;
     color: $secondaryColor;
+  }
+  .fontAlien {
+    font-family: Alien_S;
   }
 }

@@ -1,0 +1,28 @@
+@import "utils/variables";
+@import "utils/mixins";
+
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 250px;
+  height: 250px;
+  background-image: url(../images/loader-img.png);
+  background-size: contain;
+  animation: lds-roller 2.2s cubic-bezier(0.5, 0.5, 0, 0.5) infinite;
+  @include forTabletH {
+    width: 350px;
+  height: 350px;
+  }
+    @include forPc {
+    width: 450px;
+  height: 450px;
+  }
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
