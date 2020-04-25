@@ -92,7 +92,6 @@ class App extends React.Component {
     const urlId = props.match.params.id;
     const data = this.state.data;
     const findId = data.some(obj => obj.id === parseInt(urlId))
-    console.log(props)
 
     for (let character of data) {
       if (parseInt(urlId) === character.id) {
