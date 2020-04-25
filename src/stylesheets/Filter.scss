@@ -48,10 +48,17 @@
         padding-left: 25px;
         &:hover {
           color: white;
+          cursor: pointer;
         }
-        @include forPc {
+        @include forTabletV {
           &:hover {
             color: $secondaryColor;
+          }
+        }
+        .alien {
+          &:hover {
+            font-family: Alien_S;
+            color: $mainColor;
           }
         }
       }

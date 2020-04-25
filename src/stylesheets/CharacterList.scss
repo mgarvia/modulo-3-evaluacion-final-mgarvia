@@ -1,10 +1,7 @@
-@import "utils/variables";
-@import "utils/mixins";
-
 .dataList {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   max-width: 1300px;
   margin: auto;
   .listItem {

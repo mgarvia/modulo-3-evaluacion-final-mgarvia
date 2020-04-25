@@ -11,11 +11,11 @@
   animation: lds-roller 2.2s cubic-bezier(0.5, 0.5, 0, 0.5) infinite;
   @include forTabletH {
     width: 350px;
-  height: 350px;
+    height: 350px;
   }
-    @include forPc {
+  @include forPc {
     width: 450px;
-  height: 450px;
+    height: 450px;
   }
 }
 @keyframes lds-roller {

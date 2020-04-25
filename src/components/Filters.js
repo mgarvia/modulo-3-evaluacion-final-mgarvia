@@ -2,7 +2,7 @@ import React from 'react';
 import '../stylesheets/Filter.scss';
 
 const Filters = (props) => {
-  const { inputValue, updateInputValue, updateOrderByName, orderByName, resetInputValue, translateToAlien, updateTranslateToAlien, iconAZ, iconAlien, iconSkull, deadCharacters, updateDeadCharacters } = props
+  const { inputValue, updateInputValue, resetInputValue, orderByName,updateOrderByName,   translateToAlien, updateTranslateToAlien, deadCharacters, updateDeadCharacters, iconAZ, iconAlien, iconSkull } = props
 
   const getValue = (evt) => updateInputValue(evt.currentTarget.value);
   const preventSubmit = (e) => {
@@ -30,7 +30,7 @@ const Filters = (props) => {
         </div>
         <div>
           <i className="fab fa-reddit-alien icon" ref={iconAlien}></i>
-          <label className="input__checkbox--label" htmlFor="checkboxAlien" title="Traducir a alienígena">Traducir a alienígena</label>
+          <label className="input__checkbox--label" htmlFor="checkboxAlien" title="Traducir a alienígena">Traducir a <span className="alien">alienígena</span></label>
           <input className="input__checkbox" id="checkboxAlien" type="checkbox" name="translateToAlien" value="translateToAlien" title="Traducir a alienígena" checked={translateToAlien} onChange={getCheckAlien} />
         </div>
         <div>

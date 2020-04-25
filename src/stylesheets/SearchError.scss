@@ -10,7 +10,6 @@
   }
   &__msg {
     font-family: $subtitleFont;
-    // margin-top: 30px;
     @include forTabletH {
       margin-top: 30px;
     }
