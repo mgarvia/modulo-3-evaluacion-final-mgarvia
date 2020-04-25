@@ -3,7 +3,7 @@
 
 El ejercicio consiste en desarrollar una página web con un listado de personajes de Rick and Morty, que podemos filtrar por el nombre del personaje. Vamos a usar React para realizarlo. Vamos de definir las distintas partes del ejercicio:
 
-https://raw.github.com/Adalab/modulo-3-evaluacion-final-mgarvia/blob/master/my-react-project/src/images/img-readme-png
+https://raw.github.com/Adalab/modulo-3-evaluacion-final-mgarvia/blob/master/my-react-project/src/images/img-readme.png
 
 *1.Listado de personajes*
 -

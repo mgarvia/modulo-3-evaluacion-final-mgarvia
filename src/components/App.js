@@ -117,7 +117,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="header">
-          <a href="/"><img className="logo" src={logo} alt="Rick and Morty" /></a>
+          <a href="./"><img className="logo" src={logo} alt="Rick and Morty" /></a>
         </header>
         <main className="main">
           <Switch>
